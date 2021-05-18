@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>乱数生成を関数化</title>
+</head>
+
+<body>
+  <h1>function03: 乱数生成を関数化</h1>
+  <button id="btn01">1-10</button>
+  <button id="btn02">10-20</button>
+  <button id="btn03">20-100</button>
+  <h1 id="echo"></h1>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    function getRandom( min, max ) {
+        var random = Math.floor( Math.random() * (max + 1 - min) ) + min;
+          return random;
+        }
+
+        $('#btn01').on('click', function () {
+          const random = getRandom(1,10);
+        $('#echo').text(random);
+
+        }); 
+        $('#btn02').on('click', function () {
+          const random = getRandom(10,20);
+          $('#echo').text(random);
+
+        }); 
+
+        $('#btn03').on('click',() => {
+          const random = getRandom(20,100);
+          $('#echo').text(random);
+        }); 
+
+   
+
+
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>chatApp</title>
+  <style>
+    #output li {
+      background: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>realtime chat</h1>
+  <!-- 入力場所を作成しよう -->
+  <ul>
+    <li>
+      <label for="name">name</label>
+      <input type="text" id="name">
+    </li>
+    <li>
+      <textarea name="" id="text" cols="30" rows="10"></textarea>
+    </li>
+
+    <li>
+      <button id="send">send</button>
+    </li>
+  </ul>
+  <div class="footer">
+
+  </div>
+
+  <!-- データ出力場所 -->
+  <ul id="output"></ul>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!-- 以下にfirebaseのコードを貼り付けよう -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <!-- -appを外す！！！！！！！！！ -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-analytics.js"></script>
+
+  <script>
+
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyC-LRq22bXTz5WLJjNml9y4bN08AZcQblc",
+      authDomain: "first-project-cf05a.firebaseapp.com",
+      projectId: "first-project-cf05a",
+      storageBucket: "first-project-cf05a.appspot.com",
+      messagingSenderId: "867741208465",
+      appId: "1:867741208465:web:ccc6fc00b540b0b4e09430",
+      measurementId: "G-D0K4VKPCDJ"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+    const db = firebase.firestore().collection('chat01');
+  </script>
+
+  <script>
+
+    // 日時をいい感じの形式にする関数
+    function convertFromFirestoreTimestampToDatetime(timestamp) {
+      const _d = timestamp ? new Date(timestamp * 1000) : new Date();
+      const Y = _d.getFullYear();
+      const m = (_d.getMonth() + 1).toString().padStart(2, '0');
+      const d = _d.getDate().toString().padStart(2, '0');
+      const H = _d.getHours().toString().padStart(2, '0');
+      const i = _d.getMinutes().toString().padStart(2, '0');
+      const s = _d.getSeconds().toString().padStart(2, '0');
+      return `${Y}/${m}/${d} ${H}:${i}:${s}`;
+    }
+    // 送信押したら
+    $('#send').on('click', function () {
+      // dbはデータベース　に追加
+      db.add({
+        name: $('#name').val(),
+        text: $('#text').val(),
+        // timeはgoogleさんのコード
+        time: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+      // テキストをからにする
+      $('#name').val('');
+      $('#text').val('');
+    });
+    // dbの順番を並び替える
+    db.orderBy('time', 'desc').onSnapshot(function (querySnapshot) {
+
+      const dataArray = []; // 必要なデータだけが入った新しい配列を作成 
+      
+      querySnapshot.docs.forEach(function (doc) {
+        const data = {
+          id: doc.id,
+          data: doc.data(),
+        };
+        dataArray.push(data);
+
+      });
+      console.log(dataArray);
+      
+      const tagArray = []; // `dataArray`は前回出てきたオブジェクトの配列 
+      dataArray.forEach(function (data) {
+    tagArray.push(`
+      <li id=${data.id}>
+        <p>${data.data.name}</p>
+        <p>${data.data.text}</p>
+        <p>${convertFromFirestoreTimestampToDatetime(data.data.time.seconds)}</p>
+</li> `);
+});
+console.log(tagArray);
+  $('#output').html(tagArray);
+});
+      
+
+
+
+
+
+  </script>
+</body>
+
+</html>

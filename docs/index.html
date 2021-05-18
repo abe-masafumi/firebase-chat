@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <!-- リアクト -->
+      <!-- <script src="http://fb.me/react-0.13.3.js"></script>
+      <script src="http://fb.me/JSXTransformer-0.13.3.js"></script> -->
+</head>
+<body>
+  <h1>
+    <button id="login">login</button>
+    <button id="logout" class="hidden">logout</button>
+    Chat app
+  </h1>
+  <div class="container"></div>
+  <ul class="messages hidden" id="messages">
+    <!-- <li class="left_side">
+      <div class="pic">
+        <img src="./img/チップ5.png" alt="">
+      </div>
+      <div class="text">
+        こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。
+      </div>
+    </li>
+    <li class="right_side"> 
+      <div class="pic">
+        <img src="./img/チップ10.png" alt="">
+      </div>
+      <div class="text">
+        おひさー。おひさー。おひさー。おひさー。おひさー。おひさー。おひさー。おひさー。おひさー。おひさー。おひさー。おひさー。おひさー。おひさー。
+      </div>
+    </li>
+    <li class="left_side">
+      <div class="pic">
+        <img src="./img/チップ5.png" alt="">
+      </div>
+      <div class="text">
+        こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。こんにちは。
+      </div>
+    </li> -->
+  </ul>
+
+ 
+
+  <form action="" autocomplete="off" class="hidden">
+    <div class="footer">
+      <div class="post_img">
+        <span style="font-size: 40px;" class="material-icons">perm_media</span>
+      </div>
+      <div class="post_text"><input type="text" id="message" placeholder="your message..."></div>
+    
+      <div class="post">
+        <span style="font-size: 40px;" class="material-icons">send</span>
+      </div>
+    </div>
+  </form>
+    <!-- firebase -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+
+
+  <script src="js/main.js"></script>
+</body>
+</html>
