@@ -37,7 +37,7 @@ h1 {
 }
 
 .pic {
-  background: pink;
+  // background: pink;
   width: 80px;
   text-align: center;
 }
@@ -65,13 +65,12 @@ h1 {
   height: 0;
   border: 10px solid transparent;
 }
-$main_color: white;
+$main_color: pink;
 
 .left_side .text::before {
   top: 12px;
   left: -16px;
   border-right-color: $main_color;
-  ;
 }
 
 .right_side .text::before {
@@ -84,9 +83,9 @@ $main_color: white;
 
 .footer {
   position: fixed;
-  top: 880px;
+  top: 800px;
   left: 0;
-  background: orange;
+  // background: orange;
   width: 100%;
   height: 50px;
   display: flex;
@@ -114,4 +113,8 @@ $main_color: white;
 .post {
   width: 30%;
   text-align: center;
+}
+input[type=text] {
+  height: 35px;
+  line-height: 35px;
 }

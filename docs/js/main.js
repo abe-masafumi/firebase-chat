@@ -2,7 +2,7 @@
 
   'use strict';
   const firebaseConfig = {
-    apiKey: ,
+    apiKey: "AIzaSyD0ai8u2ZOCsK-M8fslI0iESB4TChL9Tak",
     authDomain: "chat-app01-be590.firebaseapp.com",
     projectId: "chat-app01-be590",
     storageBucket: "chat-app01-be590.appspot.com",
@@ -84,7 +84,7 @@
 
                 // img.src = "./img/チップ5.png";
                 // li.textContent = d.uid.substr(0, 8) + ' : ' + d.message;
-                div1.textContent = d.uid.substr(0, 8) + ' : ' + d.message;;
+                div1.textContent = d.message;;
                 messages.appendChild(li);
               } else {
                 const li = document.createElement('li');
@@ -102,11 +102,17 @@
                 // const d = change.doc.data();
                 // img.src = "./img/チップ5.png";
                 // li.textContent = d.uid.substr(0, 8) + ' : ' + d.message;
-                div1.textContent = d.uid.substr(0, 8) + ' : ' + d.message;;
+                div1.textContent = d.message;;
                 messages.appendChild(li);
                 li.classList.add('right_side');
               }
 
+
+              let element = document.documentElement;
+              console.log(element);
+              console.log(element.clientHeight);
+              let bottom = element.scrollHeight - element.clientHeight;
+              window.scroll(0, bottom);
               // if (user == me) {
               // li.classList.add('left_side');
               // } else {
